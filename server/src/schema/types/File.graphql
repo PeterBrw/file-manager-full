@@ -1,0 +1,8 @@
+type File {
+    id: String!
+    name: String!
+}
+
+extend type Query {
+    file: File
+}
