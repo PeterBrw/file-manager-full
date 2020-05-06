@@ -1,8 +1,19 @@
 type File {
-    id: String!
-    name: String!
+    id: ID!
+    name: String
+    type: String
+    children: [File]
 }
 
 extend type Query {
-    file: File
+    getFiles: [File]
+    getChildren(id: ID!): [File]
+    getName(id: ID!): String
+}
+
+extend type Mutation {
+    changeName(id: ID, newName: String): [File]
+    deleteFile(id: ID): [File]
+    addFile(id: ID, name: String): [File]
+    dragFile(id: ID, idTo: ID): [File]
 }
