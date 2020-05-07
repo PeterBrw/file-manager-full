@@ -1,22 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./back-button.styles.css";
 
 import { useSelector, useDispatch } from "react-redux";
 
+import { onBackClick } from "../../Root";
+
 const BackButton = () => {
     const dispatch = useDispatch();
     const path = useSelector((store) => store.pathReducer);
+
     return (
         <div className="back-button">
             {path.map((item) => {
                 return (
-                    <button
-                        key={Math.floor(
-                            Math.random() * (10000 - 1000 + 1) + 1000
-                        )}
-                        onClick={() => console.log(path)}
-                    >
-                        <b>something</b>
+                    <button key={item.id} onClick={() => dispatch(onBackClick(item.id))}>
+                        <b>{item.name}</b>
                     </button>
                 );
             })}

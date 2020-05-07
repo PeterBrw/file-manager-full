@@ -24,9 +24,15 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunk))
 );
 
-export const onClick = (id) => {
+export const onClick = (id, name) => {
     return (dispatch) => {
-        dispatch(onClickPath(id));
+        dispatch(onClickPath({ id, name }));
+    };
+};
+
+export const onBackClick = (pathInput) => {
+    return (dispatch) => {
+        dispatch(onBackClickPath(pathInput));
     };
 };
 

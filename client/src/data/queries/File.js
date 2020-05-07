@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export default gql`
-    query  {
-        getFiles {
+    query($id: ID!) {
+        getChildren(id: $id) {
             id
             name
             type

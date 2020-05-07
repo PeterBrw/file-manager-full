@@ -1,7 +1,7 @@
 const ON_CLICK_PATH = "ON_CLICK_PATH";
 const ON_BACK_CLICK_PATH = "ON_BACK_CLICK_PATH";
 
-const initialState = [{ id: "root" }];
+const initialState = [{ id: "root", name: "root" }];
 
 export const pathReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -9,7 +9,8 @@ export const pathReducer = (state = initialState, action) => {
             return [
                 ...state,
                 {
-                    id: action.payload,
+                    id: action.payload.id,
+                    name: action.payload.name,
                 },
             ];
         }

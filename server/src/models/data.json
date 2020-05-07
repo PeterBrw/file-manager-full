@@ -1,7 +1,7 @@
 [
     {
         "id": "1",
-        "name": "Finder",
+        "name": "Desktop",
         "type": "folder",
         "children": [
             {
@@ -17,8 +17,7 @@
                     }
                 ]
             },
-            { "id": "12", "name": "Child 2", "type": "file", "children": [] },
-            { "id": "525", "name": "Bin", "type": "folder", "children": [] }
+            { "id": "12", "name": "Child 2", "type": "file", "children": [] }
         ]
     },
     {
@@ -28,7 +27,7 @@
         "children": [
             {
                 "id": "20",
-                "name": "T2",
+                "name": "Child 1",
                 "type": "folder",
                 "children": [
                     {
@@ -45,6 +44,15 @@
                     }
                 ]
             }
+        ]
+    },
+    {
+        "id": "3",
+        "name": "Bin",
+        "type": "folder",
+        "children": [
+            { "id": "31", "name": "Child 1", "type": "file", "children": [] },
+            { "id": "32", "name": "Child 2", "type": "file", "children": [] }
         ]
     }
 ]

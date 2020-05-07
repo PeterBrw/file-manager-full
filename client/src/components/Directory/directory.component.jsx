@@ -40,7 +40,7 @@ const Directory = ({ id, name, type }) => {
 
     return (
         <div className="directory" id={id}>
-            <div className="left" onClick={() => dispatch(onClick(id))}>
+            <div className="left" onClick={() => dispatch(onClick(id, name))}>
                 <Icon className="icon" type={type} />
                 <h1>{name}</h1>
             </div>

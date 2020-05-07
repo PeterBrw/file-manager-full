@@ -5,16 +5,24 @@ import { MyContext } from "../../react-context/display.context";
 
 import Directory from "../Directory";
 
+import { useSelector, useDispatch } from "react-redux";
+
 import { useQuery } from "@apollo/react-hooks";
 import FileQuery from "../../data/queries/File";
 
 const CustomList = () => {
-    const { loading, error, data } = useQuery(FileQuery);
-    const files = data ? data.getFiles : [];
+    const path = useSelector((store) => store.pathReducer);
+    const id = path[path.length - 1].id;
 
-    if (loading) return <h1>Loading</h1>;
-    if (error) return <h1>Some error</h1>;
+    console.log(id);
+
+    const { loading, error, data } = useQuery(FileQuery, { variables: { id } });
+
+    const files = data ? data.getChildren : [];
     console.log(files);
+    if (loading) return <h1>Loading</h1>;
+    if (error) console.log(error);
+    // return <h1>Some error </h1>;
 
     const row = useContext(MyContext);
     let classNameList = row ? "list-directory-row" : "list-directory-column";
