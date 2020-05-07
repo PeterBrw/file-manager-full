@@ -1,0 +1,9 @@
+.back-button button {
+    margin-left: 15px;
+    margin-top: 15px;
+    border-color: #00ced1;
+    height: 30px;
+    border-radius: 15%;
+    background-color: #00ced1;
+    outline: none;
+}

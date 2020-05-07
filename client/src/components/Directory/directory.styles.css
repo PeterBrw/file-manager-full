@@ -1,0 +1,40 @@
+.directory {
+    display: flex;
+    border: solid;
+    margin: 5px;
+    width: 300px;
+}
+.directory:hover .delete-button,
+.directory:hover .fa-edit {
+    visibility: visible;
+}
+.directory:hover .delete-button,
+.directory:hover .fa-edit {
+    visibility: visible;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+}
+
+.svg-inline--fa {
+    margin-left: 15px;
+    height: 5em;
+    color: #00ced1;
+}
+
+.fa-edit {
+    visibility: hidden;
+}
+
+h1 {
+    padding-left: 20px;
+}
+
+.delete-button {
+    margin-left: 30px;
+    margin-top: 0px;
+    color: red;
+    visibility: hidden;
+}

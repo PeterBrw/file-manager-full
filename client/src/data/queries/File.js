@@ -1,10 +1,11 @@
-import gql from 'graphql-tag'
+import gql from "graphql-tag";
 
 export default gql`
-	query File {
-		file {
-			id
-			name
-		}
-	}
-`
+    query  {
+        getFiles {
+            id
+            name
+            type
+        }
+    }
+`;

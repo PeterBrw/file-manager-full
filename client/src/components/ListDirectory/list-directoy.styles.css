@@ -1,0 +1,9 @@
+.list-directory-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.list-directory-column {
+    display: flex;
+    flex-direction: column;
+}
