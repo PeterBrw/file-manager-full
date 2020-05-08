@@ -13,10 +13,13 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { pathReducer } from "./redux/reducers/pathReducer";
+import { idFromReducer } from "./redux/reducers/idFromReducer";
 import { onClickPath, onBackClickPath } from "./redux/actions/pathAction";
+import { addId } from "./redux/actions/idAction";
 
 const rootReducer = combineReducers({
     pathReducer,
+    idFromReducer,
 });
 
 const store = createStore(
@@ -33,6 +36,12 @@ export const onClick = (id, name) => {
 export const onBackClick = (pathInput) => {
     return (dispatch) => {
         dispatch(onBackClickPath(pathInput));
+    };
+};
+
+export const addIdFrom = (id) => {
+    return (dispatch) => {
+        dispatch(addId(id));
     };
 };
 
