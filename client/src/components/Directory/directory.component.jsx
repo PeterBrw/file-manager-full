@@ -11,6 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 import { useSelector, useDispatch } from "react-redux";
+import { useMutation } from "@apollo/react-hooks";
+
+import DeleteFileMutation from "../../data/mutations/DeleteFile";
 
 const Directory = ({ id, name, type }) => {
     const dispatch = useDispatch();
@@ -18,6 +21,8 @@ const Directory = ({ id, name, type }) => {
 
     const [modal, setModal] = useState({ open: false });
     const [inputValue, setInputValue] = useState("");
+
+    const [deleteFolder, { data }] = useMutation(DeleteFileMutation);
 
     const onOpenModal = () => {
         setModal({ open: true });
@@ -44,7 +49,16 @@ const Directory = ({ id, name, type }) => {
                 <Icon className="icon" type={type} />
                 <h1>{name}</h1>
             </div>
-            <FontAwesomeIcon className="delete-button" icon={faTrash} />
+            <FontAwesomeIcon
+                className="delete-button"
+                icon={faTrash}
+                onClick={() => {
+                    console.log(id);
+                    deleteFolder({
+                        variables: { id },
+                    });
+                }}
+            />
             <FontAwesomeIcon icon={faEdit} onClick={onOpenModal} />
             <Modal open={modal.open} onClose={onCloseModal} little>
                 <p>Edit file name</p>
