@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./custom-list.styles.css";
 
 import { MyContext } from "../../react-context/display.context";
@@ -16,7 +16,9 @@ const CustomList = () => {
 
     console.log(id);
 
-    const { loading, error, data } = useQuery(FileQuery, { variables: { id } });
+    const { loading, error, data } = useQuery(FileQuery, {
+        variables: { id },
+    });
 
     const files = data ? data.getChildren : [];
     console.log(files);
