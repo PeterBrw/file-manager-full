@@ -16,7 +16,7 @@ const CustomList = () => {
 
     console.log(id);
 
-    const { loading, error, data } = useQuery(FileQuery, {
+    const { loading, error, data, refetch } = useQuery(FileQuery, {
         variables: { id },
     });
 
@@ -24,16 +24,22 @@ const CustomList = () => {
     console.log(files);
     if (loading) return <h1>Loading</h1>;
     if (error) console.log(error);
-    // return <h1>Some error </h1>;
 
     const row = useContext(MyContext);
     let classNameList = row ? "list-directory-row" : "list-directory-column";
 
     return (
-        <div className={classNameList}>
-            {files.map((item) => {
-                return <Directory key={item.id} {...item} />;
-            })}
+        <div
+            {...setInterval(() => {
+                refetch();
+                console.log("refetch");
+            }, 500)}
+        >
+            <div className={classNameList}>
+                {files.map((item) => {
+                    return <Directory key={item.id} {...item} />;
+                })}
+            </div>
         </div>
     );
 };
