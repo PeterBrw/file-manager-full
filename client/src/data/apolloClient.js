@@ -17,7 +17,8 @@ const getClient = ({ graphqlOptions, cache }) => {
 		cache,
 		link: from([retryLink, errorLink, httpLink]),
 		name: clientName,
-		version: clientVersion
+		version: clientVersion,
+		connectToDevTools: true
 	})
 }
 export default getClient

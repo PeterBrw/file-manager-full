@@ -11,19 +11,20 @@ function AddData() {
 
     const path = useSelector((store) => store.pathReducer);
     const id = path[path.length - 1].id;
-
-    const [addFolder, { data }] = useMutation(
-        AddFileMutation
-        //     {
-        //     update(cache, { data: { addFolder } }) {
-        //         const { files } = cache.readQuery({ query: FileQuery });
-        //         cache.writeQuery({
-        //             query: FileQuery,
-        //             data: { files: files.concat([addFolder]) },
-        //         });
-        //     },
-        // }
-    );
+    console.log(typeof id);
+    const [addFolder, { data }] = useMutation(AddFileMutation, {
+        refetchQueries: [{ query: FileQuery, variables: { id } }],
+        // update(cache, { data: { addFolder } }) {
+        //     console.log(
+        //         cache.readQuery({ query: FileQuery, variables: { id } })
+        //             .getChildren
+        //     );
+        //     // cache.writeQuery({
+        //     //     query: FileQuery,
+        //     //     data: { files: files.concat([addFolder]) },
+        //     // });
+        // },
+    });
 
     const handleSubmit = () => {
         if (word !== "") {

@@ -12,6 +12,7 @@ import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { useMutation } from "@apollo/react-hooks";
 
+import FileQuery from "../../data/queries/File";
 import DeleteFileMutation from "../../data/mutations/DeleteFile";
 import ChangeNameMutation from "../../data/mutations/ChangeName";
 import DragFileMutation from "../../data/mutations/DragFile";
@@ -19,15 +20,22 @@ import DragFileMutation from "../../data/mutations/DragFile";
 const Directory = ({ id, name, type }) => {
     const dispatch = useDispatch();
     const path = useSelector((store) => store.pathReducer);
+    const lastId = path[path.length - 1].id;
 
     const idFrom = useSelector((store) => store.idFromReducer);
 
     const [modal, setModal] = useState({ open: false });
     const [inputValue, setInputValue] = useState(name);
 
-    const [deleteFolder] = useMutation(DeleteFileMutation);
-    const [changeNameFolder] = useMutation(ChangeNameMutation);
-    const [dragAndDrop] = useMutation(DragFileMutation);
+    const [deleteFolder] = useMutation(DeleteFileMutation, {
+        refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
+    });
+    const [changeNameFolder] = useMutation(ChangeNameMutation, {
+        refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
+    });
+    const [dragAndDrop] = useMutation(DragFileMutation, {
+        refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
+    });
 
     const onOpenModal = () => {
         setModal({ open: true });

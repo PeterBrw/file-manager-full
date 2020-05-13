@@ -20,21 +20,16 @@ const CustomList = () => {
         variables: { id },
     });
 
-    const files = data ? data.getChildren : [];
+    const row = useContext(MyContext);
+    let classNameList = row ? "list-directory-row" : "list-directory-column";
+
+    let files = data ? data.getChildren : [];
     console.log(files);
     if (loading) return <h1>Loading</h1>;
     if (error) console.log(error);
 
-    const row = useContext(MyContext);
-    let classNameList = row ? "list-directory-row" : "list-directory-column";
-
     return (
-        <div
-            {...setInterval(() => {
-                refetch();
-                console.log("refetch");
-            }, 500)}
-        >
+        <div>
             <div className={classNameList}>
                 {files.map((item) => {
                     return <Directory key={item.id} {...item} />;
