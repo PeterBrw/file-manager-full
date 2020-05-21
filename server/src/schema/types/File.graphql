@@ -1,5 +1,5 @@
 type File {
-    id: ID!
+    id: ID
     name: String
     type: String
     children: [File]
@@ -12,8 +12,8 @@ extend type Query {
 }
 
 extend type Mutation {
-    changeName(id: ID, newName: String): [File]
-    deleteFile(id: ID): [File]
-    addFile(id: ID, name: String): [File]
-    dragFile(id: ID, idTo: ID): [File]
+    changeName(id: ID, newName: String): File
+    deleteFile(id: ID): File
+    addFile(id: ID, name: String): File
+    dragFile(id: ID, idTo: ID, lastId: ID): [File]
 }

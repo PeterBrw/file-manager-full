@@ -11,18 +11,30 @@ function AddData() {
 
     const path = useSelector((store) => store.pathReducer);
     const id = path[path.length - 1].id;
-    console.log(typeof id);
-    const [addFolder, { data }] = useMutation(AddFileMutation, {
+
+    const [addFolder] = useMutation(AddFileMutation, {
         refetchQueries: [{ query: FileQuery, variables: { id } }],
-        // update(cache, { data: { addFolder } }) {
-        //     console.log(
-        //         cache.readQuery({ query: FileQuery, variables: { id } })
-        //             .getChildren
-        //     );
-        //     // cache.writeQuery({
-        //     //     query: FileQuery,
-        //     //     data: { files: files.concat([addFolder]) },
-        //     // });
+        // update(cache, { data: { addFile } }) {
+        //     console.log(addFile);
+        //     let files = cache.readQuery({
+        //         query: FileQuery,
+        //         variables: { id },
+        //     });
+        //     console.log(files);
+
+        //     // if (files.getChildren === null) {
+        //     //     files.getChildren = [];
+        //     // }
+
+        //     if (addFile === null) {
+        //         refetchQueries: [{ query: FileQuery, variables: { id } }];
+        //     } else {
+        //         cache.writeQuery({
+        //             query: FileQuery,
+        //             variables: { id },
+        //             data: { getChildren: files.getChildren.concat([addFile]) },
+        //         });
+        //     }
         // },
     });
 

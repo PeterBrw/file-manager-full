@@ -7,6 +7,7 @@ const {
     deleteItem,
     addItem,
     dragAndDrop,
+    returnItem,
 } = require("../../models/logic");
 
 export const resolvers = {
@@ -48,7 +49,7 @@ export const resolvers = {
                 path.join(__dirname, "../", "../", "models", "data.json"),
                 JSON.stringify(changeData)
             );
-            return changeData;
+            return returnItem(changeData, id);
         },
         deleteFile: (_, { id }) => {
             const data = JSON.parse(
@@ -56,27 +57,31 @@ export const resolvers = {
                     path.join(__dirname, "../", "../", "models", "data.json")
                 )
             );
+            const deleteEl = returnItem(data, id);
             const deleteData = deleteItem(data, id);
             fs.writeFileSync(
                 path.join(__dirname, "../", "../", "models", "data.json"),
                 JSON.stringify(deleteData)
             );
-            return deleteData;
+            return deleteEl;
         },
         addFile: (_, { id, name }) => {
-            const data = JSON.parse(
+            const oldData = JSON.parse(
                 fs.readFileSync(
                     path.join(__dirname, "../", "../", "models", "data.json")
                 )
             );
-            const addedItem = addItem(data, id, name);
+
+            const { data, rand } = addItem(oldData, id, name);
             fs.writeFileSync(
                 path.join(__dirname, "../", "../", "models", "data.json"),
-                JSON.stringify(addedItem)
+                JSON.stringify(data)
             );
-            return addedItem;
+            const data1 = [...data];
+            return returnItem(data1, rand);
+            // return data1;
         },
-        dragFile: (_, { id, idTo }) => {
+        dragFile: (_, { id, idTo, lastId }) => {
             const data = JSON.parse(
                 fs.readFileSync(
                     path.join(__dirname, "../", "../", "models", "data.json")
@@ -87,7 +92,7 @@ export const resolvers = {
                 path.join(__dirname, "../", "../", "models", "data.json"),
                 JSON.stringify(dragData)
             );
-            return dragData;
+            return returnChildren(dragData, lastId);
         },
     },
 };

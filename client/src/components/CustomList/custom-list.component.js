@@ -14,9 +14,7 @@ const CustomList = () => {
     const path = useSelector((store) => store.pathReducer);
     const id = path[path.length - 1].id;
 
-    console.log(id);
-
-    const { loading, error, data, refetch } = useQuery(FileQuery, {
+    const { loading, error, data } = useQuery(FileQuery, {
         variables: { id },
     });
 
@@ -24,7 +22,6 @@ const CustomList = () => {
     let classNameList = row ? "list-directory-row" : "list-directory-column";
 
     let files = data ? data.getChildren : [];
-    console.log(files);
     if (loading) return <h1>Loading</h1>;
     if (error) console.log(error);
 

@@ -73,9 +73,11 @@ const changeName = (data, id, newName) => {
 };
 
 const addItem = (data, id, word) => {
+    const rand = Math.floor(Math.random() * (1000 - 100 + 1) + 100).toString();
+    Math.floor(Math.random() * (1000 - 100 + 1) + 100);
     if (id === "root" || id === null) {
         data.push({
-            id: `${Math.floor(Math.random() * (1000 - 100 + 1) + 100)}`,
+            id: `${rand}`,
             name: word,
             type: "folder",
             children: [],
@@ -84,7 +86,7 @@ const addItem = (data, id, word) => {
         for (let i = 0; i < data.length; i++) {
             if (data[i].id === id) {
                 data[i].children.push({
-                    id: `${Math.floor(Math.random() * (1000 - 100 + 1) + 100)}`,
+                    id: `${rand}`,
                     name: word,
                     type: "folder",
                     children: [],
@@ -95,7 +97,7 @@ const addItem = (data, id, word) => {
         }
     }
 
-    return data;
+    return { data, rand };
 };
 
 const dragAndDrop = (data, idFrom, idTo) => {
@@ -149,6 +151,27 @@ const dragAndDrop = (data, idFrom, idTo) => {
     return dropIt(middleData, idTo);
 };
 
+const returnItem = (data, id) => {
+    if (id === "root" || id === null) {
+        return data;
+    }
+
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].id === id) {
+            return data[i];
+        }
+
+        if (data[i].children.length > 0) {
+            let found = returnItem(data[i].children, id);
+            if (found) {
+                return found;
+            }
+        }
+    }
+
+    return null;
+};
+
 module.exports = {
     returnChildren,
     returnName,
@@ -156,4 +179,5 @@ module.exports = {
     changeName,
     deleteItem,
     dragAndDrop,
+    returnItem,
 };
