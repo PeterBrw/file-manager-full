@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 const {
     returnChildren,
-    returnName,
     changeName,
     deleteItem,
     addItem,
@@ -12,14 +11,6 @@ const {
 
 export const resolvers = {
     Query: {
-        getFiles: (_, args, context) => {
-            const data = JSON.parse(
-                fs.readFileSync(
-                    path.join(__dirname, "../", "../", "models", "data.json")
-                )
-            );
-            return data;
-        },
         getChildren: (_, { id }) => {
             const data = JSON.parse(
                 fs.readFileSync(
@@ -27,14 +18,6 @@ export const resolvers = {
                 )
             );
             return returnChildren(data, id);
-        },
-        getName: (_, { id }) => {
-            const data = JSON.parse(
-                fs.readFileSync(
-                    path.join(__dirname, "../", "../", "models", "data.json")
-                )
-            );
-            return returnName(data, id);
         },
     },
     Mutation: {
@@ -79,7 +62,6 @@ export const resolvers = {
             );
             const data1 = [...data];
             return returnItem(data1, rand);
-            // return data1;
         },
         dragFile: (_, { id, idTo, lastId }) => {
             const data = JSON.parse(

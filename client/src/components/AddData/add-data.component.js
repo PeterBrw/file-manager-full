@@ -14,28 +14,6 @@ function AddData() {
 
     const [addFolder] = useMutation(AddFileMutation, {
         refetchQueries: [{ query: FileQuery, variables: { id } }],
-        // update(cache, { data: { addFile } }) {
-        //     console.log(addFile);
-        //     let files = cache.readQuery({
-        //         query: FileQuery,
-        //         variables: { id },
-        //     });
-        //     console.log(files);
-
-        //     // if (files.getChildren === null) {
-        //     //     files.getChildren = [];
-        //     // }
-
-        //     if (addFile === null) {
-        //         refetchQueries: [{ query: FileQuery, variables: { id } }];
-        //     } else {
-        //         cache.writeQuery({
-        //             query: FileQuery,
-        //             variables: { id },
-        //             data: { getChildren: files.getChildren.concat([addFile]) },
-        //         });
-        //     }
-        // },
     });
 
     const handleSubmit = () => {

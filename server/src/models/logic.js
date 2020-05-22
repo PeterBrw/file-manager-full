@@ -19,27 +19,6 @@ const returnChildren = (data, id) => {
     return null;
 };
 
-const returnName = (data, id) => {
-    if (id === "root" || id === null) {
-        return "root";
-    }
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].id === id) {
-            return data[i].name;
-        }
-
-        if (data[i].children.length > 0) {
-            let found = returnName(data[i].children, id);
-            if (found) {
-                return found;
-            }
-        }
-    }
-
-    return null;
-};
-
 const deleteItem = (data, id) => {
     return data.reduce((arr, item) => {
         if (item.id !== id) {
@@ -174,7 +153,6 @@ const returnItem = (data, id) => {
 
 module.exports = {
     returnChildren,
-    returnName,
     addItem,
     changeName,
     deleteItem,

@@ -28,7 +28,6 @@ const Directory = ({ id, name, type }) => {
     const [inputValue, setInputValue] = useState(name);
 
     const [deleteFolder] = useMutation(DeleteFileMutation, {
-        // refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
         update(cache, { data: deleteFile }) {
             console.log(deleteFile.deleteFile.id);
             let files = cache.readQuery({
@@ -48,7 +47,6 @@ const Directory = ({ id, name, type }) => {
         },
     });
     const [changeNameFolder] = useMutation(ChangeNameMutation, {
-        // refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
         update(cache, { data }) {
             let files = cache.readQuery({
                 query: FileQuery,
@@ -67,15 +65,15 @@ const Directory = ({ id, name, type }) => {
         },
     });
     const [dragAndDrop] = useMutation(DragFileMutation, {
-        // refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
-        update(cache, { data }) {
-            console.log(data);
-            cache.writeQuery({
-                query: FileQuery,
-                variables: { id: lastId },
-                data: { getChildren: data.dragFile },
-            });
-        },
+        refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
+        // update(cache, { data }) {
+        //     console.log(data);
+        //     cache.writeQuery({
+        //         query: FileQuery,
+        //         variables: { id: lastId },
+        //         data: { getChildren: data.dragFile },
+        //     });
+        // },
     });
 
     const onOpenModal = () => {

@@ -7,7 +7,6 @@ const types = [
 	Root,
 	Query,
 	Mutation,
-
 	File
 ];
 

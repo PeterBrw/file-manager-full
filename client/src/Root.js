@@ -3,7 +3,6 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import ConfigsContext from "./contexts/ConfigsContext";
 import getClient from "./data/apolloClient";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import File from "./components/File";
 import ListDirectory from "./components/ListDirectory";
 import { MyContext, display } from "./react-context/display.context";
 
