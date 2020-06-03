@@ -23,17 +23,27 @@ const CustomList = () => {
 
     let files = data ? data.getChildren : [];
     if (loading) return <h1>Loading</h1>;
-    if (error) console.log(error);
+    if (error) return <h1>Something went wrong!</h1>;
 
-    return (
-        <div>
-            <div className={classNameList}>
-                {files.map((item) => {
-                    return <Directory key={item.id} {...item} />;
-                })}
+    if (files.length > 0) {
+        return (
+            <div className="main">
+                <div className={classNameList}>
+                    {files.map((item) => {
+                        return <Directory key={item.id} {...item} />;
+                    })}
+                </div>
             </div>
-        </div>
-    );
+        );
+    } else {
+        return (
+            <div className="main">
+                <div className={classNameList}>
+                    <h2 className="empty">No folders or files</h2>
+                </div>
+            </div>
+        );
+    }
 };
 
 export default CustomList;

@@ -1,8 +1,9 @@
 .directory {
     display: flex;
-    border: solid;
-    margin: 5px;
-    width: 300px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    /* margin: 5px; */
+    width: 100%;
 }
 .directory:hover .delete-button,
 .directory:hover .fa-edit {
@@ -28,8 +29,10 @@
     visibility: hidden;
 }
 
-h1 {
+.header {
     padding-left: 20px;
+    padding-top: 7px;
+    width: 120px;
 }
 
 .delete-button {

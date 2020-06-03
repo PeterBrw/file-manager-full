@@ -28,6 +28,7 @@ const Directory = ({ id, name, type }) => {
     const [inputValue, setInputValue] = useState(name);
 
     const [deleteFolder] = useMutation(DeleteFileMutation, {
+        // refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
         update(cache, { data: deleteFile }) {
             console.log(deleteFile.deleteFile.id);
             let files = cache.readQuery({
@@ -47,6 +48,7 @@ const Directory = ({ id, name, type }) => {
         },
     });
     const [changeNameFolder] = useMutation(ChangeNameMutation, {
+        // refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
         update(cache, { data }) {
             let files = cache.readQuery({
                 query: FileQuery,
@@ -65,15 +67,15 @@ const Directory = ({ id, name, type }) => {
         },
     });
     const [dragAndDrop] = useMutation(DragFileMutation, {
-        refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
-        // update(cache, { data }) {
-        //     console.log(data);
-        //     cache.writeQuery({
-        //         query: FileQuery,
-        //         variables: { id: lastId },
-        //         data: { getChildren: data.dragFile },
-        //     });
-        // },
+        // refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
+        update(cache, { data }) {
+            console.log(data);
+            // cache.writeQuery({
+            //     query: FileQuery,
+            //     variables: { id: lastId },
+            //     data: { getChildren: data.dragFile },
+            // });
+        },
     });
 
     const onOpenModal = () => {
@@ -133,14 +135,14 @@ const Directory = ({ id, name, type }) => {
         >
             <div className="left" onClick={() => dispatch(onClick(id, name))}>
                 <Icon className="icon" type={type} />
-                <h1
+                <h2
                     className="header"
                     draggable="true"
                     onDragStart={dragStart}
                     id={id}
                 >
                     {name}
-                </h1>
+                </h2>
             </div>
             <FontAwesomeIcon
                 className="delete-button"

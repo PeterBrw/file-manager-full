@@ -1,0 +1,23 @@
+.add-data {
+    display: flex;
+    margin: 0 auto 0 auto;
+    justify-content: center;
+}
+
+input {
+    margin-top: 15px;
+    height: 23px;
+    width: 170px;
+    border-radius: 5%;
+    outline: none;
+}
+
+button {
+    margin-left: 15px;
+    margin-top: 15px;
+    border-color: #00ced1;
+    height: 30px;
+    border-radius: 15%;
+    background-color: #00ced1;
+    outline: none;
+}
