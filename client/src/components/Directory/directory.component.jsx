@@ -23,59 +23,55 @@ const Directory = ({ id, name, type }) => {
     const lastId = path[path.length - 1].id;
 
     const idFrom = useSelector((store) => store.idFromReducer);
+    // let idTo;
 
     const [modal, setModal] = useState({ open: false });
     const [inputValue, setInputValue] = useState(name);
 
     const [deleteFolder] = useMutation(DeleteFileMutation, {
-        // refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
-        update(cache, { data: deleteFile }) {
-            console.log(deleteFile.deleteFile.id);
-            let files = cache.readQuery({
-                query: FileQuery,
-                variables: { id: lastId },
-            });
-            console.log(files);
-            files = files.getChildren.filter(
-                (file) => file.id !== deleteFile.deleteFile.id
-            );
+        refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
+        // update(cache, { data: deleteFile }) {
+        //     console.log(deleteFile.deleteFile.id);
+        //     let files = cache.readQuery({
+        //         query: FileQuery,
+        //         variables: { id: lastId },
+        //     });
+        //     console.log(files);
+        //     files = files.getChildren.filter(
+        //         (file) => file.id !== deleteFile.deleteFile.id
+        //     );
 
-            cache.writeQuery({
-                query: FileQuery,
-                variables: { id: lastId },
-                data: { getChildren: files },
-            });
-        },
+        //     cache.writeQuery({
+        //         query: FileQuery,
+        //         variables: { id: lastId },
+        //         data: { getChildren: files },
+        //     });
+        // },
     });
     const [changeNameFolder] = useMutation(ChangeNameMutation, {
-        // refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
-        update(cache, { data }) {
-            let files = cache.readQuery({
-                query: FileQuery,
-                variables: { id: lastId },
-            });
-            files.getChildren.map((item) => {
-                if (item.id === data.changeName.id) {
-                    item.name = data.changeName.name;
-                }
-            });
-            cache.writeQuery({
-                query: FileQuery,
-                variables: { id: lastId },
-                data: { getChildren: files.getChildren },
-            });
-        },
+        refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
+        // update(cache, { data }) {
+        //     let files = cache.readQuery({
+        //         query: FileQuery,
+        //         variables: { id: lastId },
+        //     });
+        //     files.getChildren.map((item) => {
+        //         if (item.id === data.changeName.id) {
+        //             item.name = data.changeName.name;
+        //         }
+        //     });
+        //     cache.writeQuery({
+        //         query: FileQuery,
+        //         variables: { id: lastId },
+        //         data: { getChildren: files.getChildren },
+        //     });
+        // },
     });
     const [dragAndDrop] = useMutation(DragFileMutation, {
-        // refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
-        update(cache, { data }) {
-            console.log(data);
-            // cache.writeQuery({
-            //     query: FileQuery,
-            //     variables: { id: lastId },
-            //     data: { getChildren: data.dragFile },
-            // });
-        },
+        refetchQueries: [{ query: FileQuery, variables: { id: lastId } }],
+        // update(cache, { data }) {
+        //     console.log(cache.data.data);
+        // },
     });
 
     const onOpenModal = () => {

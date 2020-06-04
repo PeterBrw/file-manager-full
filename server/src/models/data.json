@@ -1,1 +1,50 @@
-[{"id":"1","name":"Finder","type":"folder","children":[{"id":"11","name":"Child 1","type":"folder","children":[{"id":"55","name":"Child 5","type":"file","children":[]}]},{"id":"12","name":"Child 2","type":"file","children":[]}]},{"id":"2","name":"Downloads","type":"folder","children":[{"id":"20","name":"Testing Child","type":"folder","children":[{"id":"21","name":"Grand Child 1","type":"file","children":[]},{"id":"22","name":"Grand Child 2","type":"file","children":[]}]}]},{"id":"165","name":"Bin","type":"folder","children":[]}]
+[
+    {
+        "id": "1",
+        "name": "Finder",
+        "type": "folder",
+        "children": [
+            {
+                "id": "11",
+                "name": "Child 1",
+                "type": "folder",
+                "children": [
+                    {
+                        "id": "55",
+                        "name": "Child 5",
+                        "type": "file",
+                        "children": []
+                    }
+                ]
+            },
+            { "id": "12", "name": "Child 2", "type": "file", "children": [] }
+        ]
+    },
+    {
+        "id": "2",
+        "name": "Downloads",
+        "type": "folder",
+        "children": [
+            {
+                "id": "20",
+                "name": "Testing Child",
+                "type": "folder",
+                "children": [
+                    {
+                        "id": "21",
+                        "name": "Grand Child 1",
+                        "type": "file",
+                        "children": []
+                    },
+                    {
+                        "id": "22",
+                        "name": "Grand Child 2",
+                        "type": "file",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    { "id": "995", "name": "Bin", "type": "folder", "children": [] }
+]

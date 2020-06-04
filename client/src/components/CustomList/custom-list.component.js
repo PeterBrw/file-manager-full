@@ -23,7 +23,10 @@ const CustomList = () => {
 
     let files = data ? data.getChildren : [];
     if (loading) return <h1>Loading</h1>;
-    if (error) return <h1>Something went wrong!</h1>;
+    if (error) {
+        console.log(error);
+        return <h1>Something went wrong!</h1>;
+    }
 
     if (files.length > 0) {
         return (
